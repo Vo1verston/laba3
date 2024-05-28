@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сайт Катунина</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #666666;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+        }
+        h1 {
+            color: #ff0000;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-size: 46px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #001aff;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        p {
+            color: #ffffff;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="number"] {
+            width: calc(50% - 5px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #000000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #8eaa90;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .result {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .resume-container {
+            width: calc(50% - 10px);
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .resume-container input[type="text"] {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .container-form {
+            width: calc(50% - 10px);
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .container-form input[type="number"] {
+            width: 100%;
+        }
+        .container-form button {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="resume-container">
+            <h1>Мое резюме</h1>
+            <p><strong>Имя:</strong> <span id="nameSurname">Александр</span></p>
+            <p><strong>Фамилия:</strong> <span id="surname">Катунин</span></p>
+            <img src="avatarka.png" alt="Мое фото">
+            <input type="text" id="newName" placeholder="Новое имя">
+            <input type="text" id="newSurname" placeholder="Новая фамилия">
+            <button onclick="changeName()">Изменить Имя</button>
+            <button onclick="changeSurname()">Изменить Фамилию</button>
+            <br><br>
+            <button onclick="askAge()">Узнать возраст</button>
+        </div>
+
+        <div class="container-form">
+            <h2>Операции с двумя числами</h2>
+            <input type="number" id="num1" placeholder="Введите первое число">
+            <input type="number" id="num2" placeholder="Введите второе число">
+            <button onclick="confirmFindMin()">Найти минимум</button>
+            <button onclick="confirmFindMax()">Найти максимум</button>
+            <button onclick="confirmCheckEqual()">Проверить равенство</button>
+            <div class="result" id="result"></div>
+        </div>
+    </div>
+
+    <script>
+        function changeName() {
+            var newName = document.getElementById("newName").
+            value;
+            if (newName) {
+                document.getElementById("nameSurname").innerText = newName;
+            } else {
+                alert("Пожалуйста, введите новое имя.");
+            }
+        }
+
+        function changeSurname() {
+            var newSurname = document.getElementById("newSurname").value;
+            if (newSurname) {
+                document.getElementById("surname").innerText = newSurname;
+            } else {
+                alert("Пожалуйста, введите новую фамилию.");
+            }
+        }
+
+        function askAge() {
+    let age;
+    while (true) {
+        age = prompt("Пожалуйста, введите ваш возраст:");
+        if (age === null) {
+            alert("Ввод отменен, попробуйте снова.");
+            continue;
+        }
+        if (confirm("Вам действительно " + age + " лет?")) {
+            alert("Возраст подтвержден.");
+            break;
+        } else {
+            alert("Попробуйте ввести возраст снова.");
+        }
+    }
+}
+
+        function findMin() {
+            let a = parseFloat(document.getElementById('num1').value);
+            let b = parseFloat(document.getElementById('num2').value);
+            let min = Math.min(a, b);
+            document.getElementById('result').innerText = 'Минимум: ' + min;
+        }
+
+        function findMax() {
+            let a = parseFloat(document.getElementById('num1').value);
+            let b = parseFloat(document.getElementById('num2').value);
+            let max = Math.max(a, b);
+            document.getElementById('result').innerText = 'Максимум: ' + max;
+        }
+
+        function checkEqual() {
+            let a = parseFloat(document.getElementById('num1').value);
+            let b = parseFloat(document.getElementById('num2').value);
+            let equal = (a === b);
+            document.getElementById('result').innerText = 'Равно: ' + (equal ? 'да' : 'нет');
+        }
+
+        function confirmAction(action) {
+            if (confirm("Вы уверены, что хотите выполнить эту операцию?")) {
+                action();
+            } else {
+                alert("Операция отменена.");
+            }
+        }
+
+        function confirmFindMin() {
+            confirmAction(findMin);
+        }
+
+        function confirmFindMax() {
+            confirmAction(findMax);
+        }
+
+        function confirmCheckEqual() {
+            confirmAction(checkEqual);
+        }
+    </script>
+</body>
+</html>
